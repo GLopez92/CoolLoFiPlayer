@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lo-Fi Player</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="player">
+    <!-- Video Background -->
+    <video id="background-video" autoplay muted loop>
+      <source src="assets/videos/lofi-background.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <!-- Controls Section -->
+    <div class="controls">
+      <h1>Lo-Fi Player</h1>
+      <button id="play-pause">Play</button>
+      <button id="next-track">Next Track</button>
+
+      <!-- Theme Controls -->
+      <div id="visual-theme">
+        <button data-theme="day" aria-label="Switch to day theme">Day</button>
+        <button data-theme="night" aria-label="Switch to night theme">Night</button>
+      </div>
+
+      <!-- Ambient Sound Controls -->
+      <div id="ambient-sounds">
+        <button data-sound="rain" aria-label="Play rain sound">Rain</button>
+        <button data-sound="birds" aria-label="Play bird sounds">Birds</button>
+      </div>
+    </div>
+
+    <!-- Music Visualizer -->
+    <canvas id="music-visualizer" aria-label="Music visualizer"></canvas>
+
+    <!-- Audio Player -->
+    <audio id="audio-player" src="assets/audio/track1.mp3"></audio>
+  </div>
+
+  <!-- Sample Modifier Section -->
+  <div id="sample-modifier">
+    <h2>Customize Your Beat</h2>
+    <label for="sample-select">Select Sample:</label>
+    <select id="sample-select">
+      <option value="drums">Drums</option>
+      <option value="bass">Bass</option>
+      <option value="synth">Synth</option>
+      <option value="fx">FX</option>
+    </select>
+    <label for="volume-control">Volume:</label>
+    <input type="range" id="volume-control" min="0" max="1" step="0.1" value="0.5" aria-label="Volume control">
+    <label for="pitch-control">Pitch:</label>
+    <input type="range" id="pitch-control" min="0.5" max="2" step="0.1" value="1" aria-label="Pitch control">
+    <label for="speed-control">Playback Speed:</label>
+    <input type="range" id="speed-control" min="0.5" max="2" step="0.1" value="1" aria-label="Playback speed control">
+    <button id="play-sample" aria-label="Play selected sample">Play Sample</button>
+    <button id="loop-sample" aria-label="Toggle loop for sample">Toggle Loop</button>
+  </div>
+
+  <!-- GSAP and Magenta.js Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@magenta/music@1.22.1"></script>
+
+  <!-- Custom Script -->
+  <script src="script.js"></script>
+</body>
+</html>
+

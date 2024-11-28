@@ -1,0 +1,164 @@
+/* General Reset */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  background-color: #000; /* Fallback for unsupported video background */
+}
+
+/* Player Container */
+.player {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+}
+
+/* Video Background */
+video#background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* Controls Section */
+.controls {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+button {
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: rgba(255, 255, 255, 1);
+}
+
+/* Theme Controls */
+#visual-theme button {
+  margin: 5px;
+  background: rgba(100, 150, 255, 0.8);
+}
+
+#visual-theme button:hover {
+  background: rgba(100, 150, 255, 1);
+}
+
+/* Ambient Sound Controls */
+#ambient-sounds button {
+  margin: 5px;
+  background: rgba(100, 255, 150, 0.8);
+}
+
+#ambient-sounds button:hover {
+  background: rgba(100, 255, 150, 1);
+}
+
+/* Music Visualizer */
+#music-visualizer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Sample Modifier Section */
+#sample-modifier {
+  margin: 20px auto;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  max-width: 400px;
+  z-index: 3;
+}
+
+#sample-modifier label {
+  display: block;
+  margin: 10px 0 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#sample-modifier select,
+#sample-modifier input,
+#sample-modifier button {
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+#sample-modifier input[type="range"] {
+  width: 100%;
+  background: transparent;
+  -webkit-appearance: none;
+}
+
+#sample-modifier input[type="range"]::-webkit-slider-runnable-track {
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+}
+
+#sample-modifier input[type="range"]::-webkit-slider-thumb {
+  width: 15px;
+  height: 15px;
+  background: white;
+  border-radius: 50%;
+  -webkit-appearance: none;
+}
+
+#sample-modifier input[type="range"]::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  background: white;
+  border-radius: 50%;
+}
+
+/* Buttons in Sample Modifier */
+#sample-modifier button {
+  background: rgba(255, 150, 150, 0.8);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#sample-modifier button:hover {
+  background: rgba(255, 150, 150, 1);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .controls {
+    flex-direction: column;
+  }
+
+  #sample-modifier {
+    max-width: 300px;
+    padding: 15px;
+  }
+}
+

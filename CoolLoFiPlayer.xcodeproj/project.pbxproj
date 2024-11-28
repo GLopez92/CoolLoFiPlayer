@@ -1,0 +1,135 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXFileReference section */
+		1FEA77762CF84BDA00997323 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		1FEA77772CF84C3200997323 /* style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
+		1FEA77782CF84C7500997323 /* script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = script.js; sourceTree = "<group>"; };
+		1FEA777D2CF84D4C00997323 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1FEA77802CF8539100997323 /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
+		1FEA77912CF85CDB00997323 /* track1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = track1.mp3; sourceTree = "<group>"; };
+		1FEA77922CF85DAB00997323 /* lofi-background.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "lofi-background.mp4"; sourceTree = "<group>"; };
+		1FEA77942CF8650200997323 /* Drums_Loop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Drums_Loop.wav; sourceTree = "<group>"; };
+		1FEA77972CF8650200997323 /* track2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = track2.mp3; sourceTree = "<group>"; };
+		1FEA77982CF8650200997323 /* track3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = track3.mp3; sourceTree = "<group>"; };
+		1FEA77992CF8650900997323 /* Sub_Bass.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Sub_Bass.wav; sourceTree = "<group>"; };
+		1FEA779A2CF8652100997323 /* lofi-day.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "lofi-day.mp4"; sourceTree = "<group>"; };
+		1FEA779B2CF8652A00997323 /* lofi-night.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "lofi-night.mp4"; sourceTree = "<group>"; };
+		1FEA779C2CF8665B00997323 /* rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rain.mp3; sourceTree = "<group>"; };
+		1FEA779D2CF8666400997323 /* birds.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = birds.mp3; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1FEA776F2CF849B800997323 = {
+			isa = PBXGroup;
+			children = (
+				1FEA77762CF84BDA00997323 /* index.html */,
+				1FEA77772CF84C3200997323 /* style.css */,
+				1FEA77782CF84C7500997323 /* script.js */,
+				1FEA77792CF84CD400997323 /* assets */,
+				1FEA777D2CF84D4C00997323 /* README.md */,
+				1FEA777E2CF84F3200997323 /* node-scripts */,
+			);
+			sourceTree = "<group>";
+		};
+		1FEA77792CF84CD400997323 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				1FEA778E2CF85BEA00997323 /* audio */,
+				1FEA77902CF85C5900997323 /* videos */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		1FEA777E2CF84F3200997323 /* node-scripts */ = {
+			isa = PBXGroup;
+			children = (
+				1FEA77802CF8539100997323 /* package.json */,
+			);
+			path = "node-scripts";
+			sourceTree = "<group>";
+		};
+		1FEA778E2CF85BEA00997323 /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				1FEA77912CF85CDB00997323 /* track1.mp3 */,
+				1FEA77972CF8650200997323 /* track2.mp3 */,
+				1FEA77982CF8650200997323 /* track3.mp3 */,
+				1FEA779D2CF8666400997323 /* birds.mp3 */,
+				1FEA779C2CF8665B00997323 /* rain.mp3 */,
+				1FEA77942CF8650200997323 /* Drums_Loop.wav */,
+				1FEA77992CF8650900997323 /* Sub_Bass.wav */,
+			);
+			path = audio;
+			sourceTree = "<group>";
+		};
+		1FEA77902CF85C5900997323 /* videos */ = {
+			isa = PBXGroup;
+			children = (
+				1FEA77922CF85DAB00997323 /* lofi-background.mp4 */,
+				1FEA779A2CF8652100997323 /* lofi-day.mp4 */,
+				1FEA779B2CF8652A00997323 /* lofi-night.mp4 */,
+			);
+			path = videos;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		1FEA77702CF849B800997323 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1610;
+			};
+			buildConfigurationList = 1FEA77732CF849B800997323 /* Build configuration list for PBXProject "CoolLoFiPlayer" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1FEA776F2CF849B800997323;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		1FEA77742CF849B800997323 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		1FEA77752CF849B800997323 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1FEA77732CF849B800997323 /* Build configuration list for PBXProject "CoolLoFiPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FEA77742CF849B800997323 /* Debug */,
+				1FEA77752CF849B800997323 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1FEA77702CF849B800997323 /* Project object */;
+}
