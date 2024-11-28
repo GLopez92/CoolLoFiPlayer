@@ -22,19 +22,19 @@
 
       <!-- Theme Controls -->
       <div id="visual-theme">
-        <button data-theme="day" aria-label="Switch to day theme">Day</button>
-        <button data-theme="night" aria-label="Switch to night theme">Night</button>
+        <button data-theme="day">Day</button>
+        <button data-theme="night">Night</button>
       </div>
 
       <!-- Ambient Sound Controls -->
       <div id="ambient-sounds">
-        <button data-sound="rain" aria-label="Play rain sound">Rain</button>
-        <button data-sound="birds" aria-label="Play bird sounds">Birds</button>
+        <button data-sound="rain" id="rain-button">Play Rain</button>
+        <button data-sound="birds" id="birds-button">Play Birds</button>
       </div>
     </div>
 
     <!-- Music Visualizer -->
-    <canvas id="music-visualizer" aria-label="Music visualizer"></canvas>
+    <canvas id="music-visualizer"></canvas>
 
     <!-- Audio Player -->
     <audio id="audio-player" src="assets/audio/track1.mp3"></audio>
@@ -51,13 +51,20 @@
       <option value="fx">FX</option>
     </select>
     <label for="volume-control">Volume:</label>
-    <input type="range" id="volume-control" min="0" max="1" step="0.1" value="0.5" aria-label="Volume control">
+    <input type="range" id="volume-control" min="0" max="1" step="0.1" value="0.5">
     <label for="pitch-control">Pitch:</label>
-    <input type="range" id="pitch-control" min="0.5" max="2" step="0.1" value="1" aria-label="Pitch control">
+    <input type="range" id="pitch-control" min="0.5" max="2" step="0.1" value="1">
     <label for="speed-control">Playback Speed:</label>
-    <input type="range" id="speed-control" min="0.5" max="2" step="0.1" value="1" aria-label="Playback speed control">
-    <button id="play-sample" aria-label="Play selected sample">Play Sample</button>
-    <button id="loop-sample" aria-label="Toggle loop for sample">Toggle Loop</button>
+    <input type="range" id="speed-control" min="0.5" max="2" step="0.1" value="1">
+    <button id="play-sample">Play Sample</button>
+    <button id="loop-sample">Toggle Loop</button>
+  </div>
+
+  <!-- Generate Music Section -->
+  <div id="magenta-music">
+    <h2>Generate Your Music</h2>
+    <button id="generate-melody">Generate Melody</button>
+    <button id="generate-drums">Generate Drums</button>
   </div>
 
   <!-- GSAP and Magenta.js Libraries -->

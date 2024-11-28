@@ -4,7 +4,7 @@
   "description": "Cool LoFi Player created by Guillermo Lopez",
   "main": "script.js",
   "scripts": {
-    "start": "http-server ./ -p 8080",
+    "start": "npx http-server ./ -p 8080",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -14,3 +14,4 @@
     "http-server": "^14.1.1"
   }
 }
+

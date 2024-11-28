@@ -107,7 +107,7 @@ License
 This project is licensed under the MIT License. Feel free to use and modify it as you like.
 
 Credits
-Lo-Fi Player Creator: Your Name
+Lo-Fi Player Creator: Guillermo Lopez
 Background Videos: Custom-created visuals (or credit creators if using external sources).
 Ambient Sounds and Tracks: Custom audio tracks and samples (or credit sources if applicable).
 Future Enhancements

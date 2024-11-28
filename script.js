@@ -16,7 +16,7 @@ let isPlaying = false;
 let isLooping = false;
 const tracks = ["assets/audio/track1.mp3", "assets/audio/track2.mp3", "assets/audio/track3.mp3"];
 let currentTrackIndex = 0;
-let ambientAudio = null; // Variable to store the ambient audio instance
+let ambientSounds = {}; // Store active ambient sound instances
 
 // Play/Pause functionality
 playPauseButton.addEventListener("click", () => {
@@ -85,24 +85,29 @@ visualThemeButtons.forEach((button) => {
   });
 });
 
-// Ambient Sounds
+// Ambient Sounds Logic
 ambientSoundButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const sound = button.getAttribute("data-sound");
+    const soundPath = `assets/audio/${sound}.mp3`;
 
-    // Stop currently playing ambient audio
-    if (ambientAudio && !ambientAudio.paused) {
-      ambientAudio.pause();
-      ambientAudio.currentTime = 0;
+    // Initialize sound if it doesn't exist
+    if (!ambientSounds[sound]) {
+      ambientSounds[sound] = new Audio(soundPath);
+      ambientSounds[sound].loop = true; // Enable looping
     }
 
-    // Play new ambient sound
-    ambientAudio = new Audio(`assets/audio/${sound}.mp3`);
-    ambientAudio.loop = true;
-
-    ambientAudio.play().catch((err) => {
-      console.error(`Error playing ambient sound (${sound}):`, err);
-    });
+    // Toggle play/pause for the specific sound
+    if (ambientSounds[sound].paused) {
+      ambientSounds[sound].play()
+        .then(() => {
+          button.textContent = `Pause ${sound.charAt(0).toUpperCase() + sound.slice(1)}`;
+        })
+        .catch((err) => console.error(`Error playing ${sound} sound:`, err));
+    } else {
+      ambientSounds[sound].pause();
+      button.textContent = `Play ${sound.charAt(0).toUpperCase() + sound.slice(1)}`;
+    }
   });
 });
 
@@ -113,14 +118,5 @@ audioPlayer.addEventListener("error", (e) => {
 
 backgroundVideo.addEventListener("error", (e) => {
   console.error("Video playback error:", e);
-});
-
-ambientSoundButtons.forEach((button) => {
-  const sound = button.getAttribute("data-sound");
-  button.addEventListener("click", () => {
-    if (!ambientAudio) {
-      console.error(`Error: Ambient sound file (${sound}.mp3) not found.`);
-    }
-  });
 });
 
