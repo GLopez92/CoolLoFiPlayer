@@ -3,75 +3,98 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lo-Fi Player</title>
+  <title>Cool Lo-Fi Player</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="player">
+  <!-- Background Image -->
+  <div class="background-image"></div>
+  
+  <!-- Header Section -->
+  <header class="header">
+    <h1>Cool Lo-Fi Player</h1>
+  </header>
+  
+  <!-- Main Content -->
+  <main class="main-container">
     <!-- Video Background -->
-    <video id="background-video" autoplay muted loop>
-      <source src="assets/videos/lofi-background.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-
-    <!-- Controls Section -->
-    <div class="controls">
-      <h1>Lo-Fi Player</h1>
-      <button id="play-pause">Play</button>
-      <button id="next-track">Next Track</button>
-
-      <!-- Theme Controls -->
-      <div id="visual-theme">
-        <button data-theme="day">Day</button>
-        <button data-theme="night">Night</button>
-      </div>
-
-      <!-- Ambient Sound Controls -->
-      <div id="ambient-sounds">
-        <button data-sound="rain" id="rain-button">Play Rain</button>
-        <button data-sound="birds" id="birds-button">Play Birds</button>
-      </div>
+    <div class="video-container">
+      <video id="background-video" autoplay muted loop>
+        <source src="assets/videos/lofi-background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
     </div>
 
+    <!-- Controls Section -->
+    <section class="controls">
+      <h2>Controls</h2>
+      <div class="button-group">
+        <button id="play-pause" class="button">Play</button>
+        <button id="next-track" class="button">Next Track</button>
+      </div>
+      <div class="button-group">
+        <button class="button" data-theme="day">Day</button>
+        <button class="button" data-theme="night">Night</button>
+      </div>
+    </section>
+
+    <!-- Ambient Sounds -->
+    <section class="ambient-sounds">
+      <h2>Ambient Sounds</h2>
+      <div class="button-group">
+        <button id="rain-button" class="button" data-sound="rain">Play Rain</button>
+        <button id="birds-button" class="button" data-sound="birds">Play Birds</button>
+      </div>
+    </section>
+
     <!-- Music Visualizer -->
-    <canvas id="music-visualizer"></canvas>
+    <section class="visualizer">
+      <h2>Music Visualizer</h2>
+      <canvas id="music-visualizer"></canvas>
+    </section>
 
-    <!-- Audio Player -->
-    <audio id="audio-player" src="assets/audio/track1.mp3"></audio>
-  </div>
+    <!-- Sample Modifier Section -->
+    <section class="sample-modifier">
+      <h2>Customize Your Beat</h2>
+      <div class="modifier-container">
+        <label for="sample-select">Select Sample:</label>
+        <select id="sample-select">
+          <option value="drums">Drums</option>
+          <option value="bass">Bass</option>
+          <option value="synth">Synth</option>
+          <option value="fx">FX</option>
+        </select>
+      </div>
+      <div class="slider-container">
+        <label for="volume-control">Volume:</label>
+        <input type="range" id="volume-control" min="0" max="1" step="0.1" value="0.5">
+        <label for="pitch-control">Pitch:</label>
+        <input type="range" id="pitch-control" min="0.5" max="2" step="0.1" value="1">
+        <label for="speed-control">Playback Speed:</label>
+        <input type="range" id="speed-control" min="0.5" max="2" step="0.1" value="1">
+      </div>
+      <div class="button-group">
+        <button id="play-sample" class="button">Play Sample</button>
+        <button id="loop-sample" class="button">Toggle Loop</button>
+      </div>
+    </section>
 
-  <!-- Sample Modifier Section -->
-  <div id="sample-modifier">
-    <h2>Customize Your Beat</h2>
-    <label for="sample-select">Select Sample:</label>
-    <select id="sample-select">
-      <option value="drums">Drums</option>
-      <option value="bass">Bass</option>
-      <option value="synth">Synth</option>
-      <option value="fx">FX</option>
-    </select>
-    <label for="volume-control">Volume:</label>
-    <input type="range" id="volume-control" min="0" max="1" step="0.1" value="0.5">
-    <label for="pitch-control">Pitch:</label>
-    <input type="range" id="pitch-control" min="0.5" max="2" step="0.1" value="1">
-    <label for="speed-control">Playback Speed:</label>
-    <input type="range" id="speed-control" min="0.5" max="2" step="0.1" value="1">
-    <button id="play-sample">Play Sample</button>
-    <button id="loop-sample">Toggle Loop</button>
-  </div>
+    <!-- Generate Music Section -->
+    <section class="magenta-music">
+      <h2>Generate Your Music</h2>
+      <div class="button-group">
+        <button id="generate-melody" class="button">Generate Melody</button>
+        <button id="generate-drums" class="button">Generate Drums</button>
+      </div>
+    </section>
+  </main>
 
-  <!-- Generate Music Section -->
-  <div id="magenta-music">
-    <h2>Generate Your Music</h2>
-    <button id="generate-melody">Generate Melody</button>
-    <button id="generate-drums">Generate Drums</button>
-  </div>
+  <!-- Footer Section -->
+  <footer class="footer">
+    <p>&copy; 2024 24.7 Karat All rights reserved.</p>
+  </footer>
 
-  <!-- GSAP and Magenta.js Libraries -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@magenta/music@1.22.1"></script>
-
-  <!-- Custom Script -->
+  <!-- External Scripts -->
   <script src="script.js"></script>
 </body>
 </html>

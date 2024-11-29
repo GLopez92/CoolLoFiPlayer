@@ -22,6 +22,9 @@
 		1FEA779B2CF8652A00997323 /* lofi-night.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "lofi-night.mp4"; sourceTree = "<group>"; };
 		1FEA779C2CF8665B00997323 /* rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rain.mp3; sourceTree = "<group>"; };
 		1FEA779D2CF8666400997323 /* birds.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = birds.mp3; sourceTree = "<group>"; };
+		1FEA77A02CFA4AAE00997323 /* FX_Sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FX_Sound.wav; sourceTree = "<group>"; };
+		1FEA77A12CFA4AAE00997323 /* Synth_Loop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Synth_Loop.wav; sourceTree = "<group>"; };
+		1FEA77A32CFA4DEF00997323 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -42,6 +45,7 @@
 			children = (
 				1FEA778E2CF85BEA00997323 /* audio */,
 				1FEA77902CF85C5900997323 /* videos */,
+				1FEA779F2CFA4AA200997323 /* images */,
 			);
 			path = assets;
 			sourceTree = "<group>";
@@ -64,6 +68,8 @@
 				1FEA779C2CF8665B00997323 /* rain.mp3 */,
 				1FEA77942CF8650200997323 /* Drums_Loop.wav */,
 				1FEA77992CF8650900997323 /* Sub_Bass.wav */,
+				1FEA77A02CFA4AAE00997323 /* FX_Sound.wav */,
+				1FEA77A12CFA4AAE00997323 /* Synth_Loop.wav */,
 			);
 			path = audio;
 			sourceTree = "<group>";
@@ -76,6 +82,14 @@
 				1FEA779B2CF8652A00997323 /* lofi-night.mp4 */,
 			);
 			path = videos;
+			sourceTree = "<group>";
+		};
+		1FEA779F2CFA4AA200997323 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				1FEA77A32CFA4DEF00997323 /* background.jpg */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

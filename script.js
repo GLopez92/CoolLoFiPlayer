@@ -10,6 +10,7 @@ const pitchControl = document.getElementById("pitch-control");
 const speedControl = document.getElementById("speed-control");
 const playSampleButton = document.getElementById("play-sample");
 const loopSampleButton = document.getElementById("loop-sample");
+const backgroundDiv = document.querySelector('.background-image'); // Background Div
 
 // State variables
 let isPlaying = false;
@@ -108,8 +109,20 @@ ambientSoundButtons.forEach((button) => {
       ambientSounds[sound].pause();
       button.textContent = `Play ${sound.charAt(0).toUpperCase() + sound.slice(1)}`;
     }
+
+    // Change background image based on the sound
+    if (sound === "rain") {
+      changeBackground('assets/images/rainy-background.jpg');
+    } else if (sound === "birds") {
+      changeBackground('assets/images/sunny-background.jpg');
+    }
   });
 });
+
+// Change Background Image Dynamically
+function changeBackground(imagePath) {
+  backgroundDiv.style.backgroundImage = `url(${imagePath})`;
+}
 
 // Debugging for errors
 audioPlayer.addEventListener("error", (e) => {
