@@ -3,23 +3,31 @@ const audioPlayer = document.getElementById("audio-player");
 const playPauseButton = document.getElementById("play-pause");
 const nextTrackButton = document.getElementById("next-track");
 const backgroundVideo = document.getElementById("background-video");
-const visualThemeButtons = document.querySelectorAll("#visual-theme button");
 const ambientSoundButtons = document.querySelectorAll("#ambient-sounds button");
+const visualThemeButtons = document.querySelectorAll("#visual-theme button");
 const volumeControl = document.getElementById("volume-control");
 const pitchControl = document.getElementById("pitch-control");
 const speedControl = document.getElementById("speed-control");
 const playSampleButton = document.getElementById("play-sample");
 const loopSampleButton = document.getElementById("loop-sample");
-const backgroundDiv = document.querySelector('.background-image'); // Background Div
 
 // State variables
 let isPlaying = false;
 let isLooping = false;
 const tracks = ["assets/audio/track1.mp3", "assets/audio/track2.mp3", "assets/audio/track3.mp3"];
 let currentTrackIndex = 0;
-let ambientSounds = {}; // Store active ambient sound instances
+const ambientSounds = {};
+const backgroundDiv = document.querySelector(".background-image");
 
-// Play/Pause functionality
+// Initialize Magenta.js Models
+const melodyRNN = new mm.MusicRNN("https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/basic_rnn");
+const drumRNN = new mm.MusicRNN("https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/drum_kit_rnn");
+
+Promise.all([melodyRNN.initialize(), drumRNN.initialize()])
+  .then(() => console.log("Magenta.js models loaded"))
+  .catch((err) => console.error("Error loading Magenta.js models:", err));
+
+// Play/Pause Main Audio Player
 playPauseButton.addEventListener("click", () => {
   if (isPlaying) {
     audioPlayer.pause();
@@ -31,7 +39,7 @@ playPauseButton.addEventListener("click", () => {
   isPlaying = !isPlaying;
 });
 
-// Next Track functionality
+// Next Track Functionality
 nextTrackButton.addEventListener("click", () => {
   currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
   audioPlayer.src = tracks[currentTrackIndex];
@@ -73,32 +81,17 @@ playSampleButton.addEventListener("click", () => {
   }
 });
 
-// Theme Switching
-visualThemeButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const theme = button.getAttribute("data-theme");
-    if (theme === "day") {
-      backgroundVideo.src = "assets/videos/lofi-day.mp4";
-    } else if (theme === "night") {
-      backgroundVideo.src = "assets/videos/lofi-night.mp4";
-    }
-    backgroundVideo.play();
-  });
-});
-
 // Ambient Sounds Logic
 ambientSoundButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const sound = button.getAttribute("data-sound");
     const soundPath = `assets/audio/${sound}.mp3`;
 
-    // Initialize sound if it doesn't exist
     if (!ambientSounds[sound]) {
       ambientSounds[sound] = new Audio(soundPath);
-      ambientSounds[sound].loop = true; // Enable looping
+      ambientSounds[sound].loop = true;
     }
 
-    // Toggle play/pause for the specific sound
     if (ambientSounds[sound].paused) {
       ambientSounds[sound].play()
         .then(() => {
@@ -109,22 +102,50 @@ ambientSoundButtons.forEach((button) => {
       ambientSounds[sound].pause();
       button.textContent = `Play ${sound.charAt(0).toUpperCase() + sound.slice(1)}`;
     }
+  });
+});
 
-    // Change background image based on the sound
-    if (sound === "rain") {
-      changeBackground('assets/images/rainy-background.jpg');
-    } else if (sound === "birds") {
-      changeBackground('assets/images/sunny-background.jpg');
+// Theme Switching Logic
+visualThemeButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const theme = button.getAttribute("data-theme");
+    if (theme === "day") {
+      changeBackground("assets/images/sunny-background.jpg");
+    } else if (theme === "night") {
+      changeBackground("assets/images/night-background.jpg");
     }
   });
 });
 
-// Change Background Image Dynamically
 function changeBackground(imagePath) {
   backgroundDiv.style.backgroundImage = `url(${imagePath})`;
 }
 
-// Debugging for errors
+// Generate Melody with Magenta.js
+document.getElementById("generate-melody").addEventListener("click", async () => {
+  const seed = {
+    notes: [{ pitch: 60, startTime: 0.0, endTime: 0.5 }],
+    totalTime: 0.5,
+  };
+  const steps = 32;
+  const temperature = 1.0;
+  const melody = await melodyRNN.continueSequence(seed, steps, temperature);
+  console.log("Generated Melody:", melody);
+});
+
+// Generate Drums with Magenta.js
+document.getElementById("generate-drums").addEventListener("click", async () => {
+  const seed = {
+    notes: [{ pitch: 36, startTime: 0.0, endTime: 0.5 }],
+    totalTime: 0.5,
+  };
+  const steps = 32;
+  const temperature = 1.0;
+  const drums = await drumRNN.continueSequence(seed, steps, temperature);
+  console.log("Generated Drums:", drums);
+});
+
+// Debugging for Errors
 audioPlayer.addEventListener("error", (e) => {
   console.error("Audio playback error:", e);
 });

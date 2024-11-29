@@ -7,7 +7,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
   background: #121212;
 }
@@ -23,6 +23,7 @@ body {
   background-size: cover;
   background-position: center;
   z-index: -1;
+  filter: blur(5px) brightness(0.8);
 }
 
 /* Header */
@@ -36,17 +37,20 @@ body {
 
 .header h1 {
   margin: 0;
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: bold;
+  letter-spacing: 2px;
+  color: #ff8a00;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
 }
 
 /* Main Container */
 .main-container {
   margin: 20px auto;
   text-align: center;
-  padding: 20px;
+  padding: 30px;
   background-color: rgba(0, 0, 0, 0.7);
-  border-radius: 10px;
+  border-radius: 15px;
   width: 80%;
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.8);
 }
@@ -55,7 +59,7 @@ body {
 .button {
   margin: 10px;
   padding: 12px 24px;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: bold;
   color: #ffffff;
   background: linear-gradient(90deg, #ff8a00, #e52e71);
@@ -70,13 +74,95 @@ body {
   box-shadow: 0px 5px 15px rgba(255, 138, 0, 0.5);
 }
 
+/* Slider Container */
+.slider-container {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.slider-container label {
+  font-size: 1rem;
+  margin-right: 10px;
+  color: #ff8a00;
+}
+
+.slider-container input[type="range"] {
+  appearance: none;
+  width: 70%;
+  height: 5px;
+  background: #e52e71;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.slider-container input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  background: #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Button Groups */
+.button-group {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* Music Visualizer */
+.visualizer {
+  margin-top: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.8);
+}
+
+#music-visualizer {
+  width: 100%;
+  height: 200px;
+  background: #121212;
+  border-radius: 10px;
+}
+
 /* Footer */
 .footer {
-  margin-top: 20px;
+  margin-top: 30px;
   text-align: center;
   background-color: rgba(0, 0, 0, 0.8);
   color: #ffffff;
-  padding: 10px;
+  padding: 15px;
   width: 100%;
+  font-size: 1rem;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #ff8a00;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+}
+
+/* Ambient Sound Section */
+.ambient-sounds {
+  margin: 20px 0;
+  text-align: center;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: rgba(255, 138, 0, 0.1);
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Section Titles */
+.controls h2, .ambient-sounds h2, .visualizer h2, .sample-modifier h2, .magenta-music h2 {
+  font-size: 1.5rem;
+  color: #ff8a00;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
 }
 
