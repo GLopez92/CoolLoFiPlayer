@@ -1,156 +1,214 @@
-// Select DOM elements
+// Main Audio Controls
 const audioPlayer = document.getElementById("audio-player");
 const playPauseButton = document.getElementById("play-pause");
 const nextTrackButton = document.getElementById("next-track");
-const backgroundVideo = document.getElementById("background-video");
-const ambientSoundButtons = document.querySelectorAll("#ambient-sounds button");
-const visualThemeButtons = document.querySelectorAll("#visual-theme button");
-const volumeControl = document.getElementById("volume-control");
-const pitchControl = document.getElementById("pitch-control");
-const speedControl = document.getElementById("speed-control");
-const playSampleButton = document.getElementById("play-sample");
-const loopSampleButton = document.getElementById("loop-sample");
-
-// State variables
 let isPlaying = false;
-let isLooping = false;
-const tracks = ["assets/audio/track1.mp3", "assets/audio/track2.mp3", "assets/audio/track3.mp3"];
+
+const tracks = [
+  "assets/audio/track1.mp3",
+  "assets/audio/track2.mp3",
+  "assets/audio/track3.mp3",
+];
 let currentTrackIndex = 0;
-const ambientSounds = {};
-const backgroundDiv = document.querySelector(".background-image");
 
-// Initialize Magenta.js Models
-const melodyRNN = new mm.MusicRNN("https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/basic_rnn");
-const drumRNN = new mm.MusicRNN("https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/drum_kit_rnn");
+// Ensure the audio player starts with a valid source
+audioPlayer.src = tracks[currentTrackIndex];
 
-Promise.all([melodyRNN.initialize(), drumRNN.initialize()])
-  .then(() => console.log("Magenta.js models loaded"))
-  .catch((err) => console.error("Error loading Magenta.js models:", err));
-
-// Play/Pause Main Audio Player
+// Play/Pause Main Track
 playPauseButton.addEventListener("click", () => {
+  if (!audioPlayer.src) {
+    console.error("No audio source found.");
+    return;
+  }
+
   if (isPlaying) {
     audioPlayer.pause();
     playPauseButton.textContent = "Play";
+    playPauseButton.setAttribute("aria-pressed", "false");
   } else {
-    audioPlayer.play();
-    playPauseButton.textContent = "Pause";
+    audioPlayer
+      .play()
+      .then(() => {
+        playPauseButton.textContent = "Pause";
+        playPauseButton.setAttribute("aria-pressed", "true");
+      })
+      .catch((error) => {
+        console.error("Audio playback failed:", error);
+      });
   }
   isPlaying = !isPlaying;
 });
 
-// Next Track Functionality
+// Play Next Track
 nextTrackButton.addEventListener("click", () => {
   currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
   audioPlayer.src = tracks[currentTrackIndex];
-  audioPlayer.play();
-  playPauseButton.textContent = "Pause";
-  isPlaying = true;
+
+  audioPlayer
+    .play()
+    .then(() => {
+      playPauseButton.textContent = "Pause";
+      playPauseButton.setAttribute("aria-pressed", "true");
+      isPlaying = true;
+    })
+    .catch((error) => {
+      console.error("Audio playback failed:", error);
+    });
 });
 
-// Volume Control
-volumeControl.addEventListener("input", (event) => {
-  audioPlayer.volume = event.target.value;
-});
+// Audio Control Functions for Samples
+function initializeSampleControls(sampleId) {
+  const audioElement = document.getElementById(`${sampleId}-audio`);
+  const volumeControl = document.querySelector(`#${sampleId}-volume`);
+  const pitchControl = document.querySelector(`#${sampleId}-pitch`);
+  const speedControl = document.querySelector(`#${sampleId}-speed`);
+  const playButton = document.querySelector(`#${sampleId}-play`);
+  const loopButton = document.querySelector(`#${sampleId}-loop`);
 
-// Pitch Control
-pitchControl.addEventListener("input", (event) => {
-  audioPlayer.playbackRate = event.target.value;
-});
-
-// Playback Speed Control
-speedControl.addEventListener("input", (event) => {
-  audioPlayer.playbackRate = event.target.value;
-});
-
-// Loop Sample
-loopSampleButton.addEventListener("click", () => {
-  isLooping = !isLooping;
-  audioPlayer.loop = isLooping;
-  loopSampleButton.textContent = isLooping ? "Disable Loop" : "Enable Loop";
-});
-
-// Play Sample
-playSampleButton.addEventListener("click", () => {
-  if (audioPlayer.paused) {
-    audioPlayer.play();
-    playSampleButton.textContent = "Pause Sample";
-  } else {
-    audioPlayer.pause();
-    playSampleButton.textContent = "Play Sample";
-  }
-});
-
-// Ambient Sounds Logic
-ambientSoundButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const sound = button.getAttribute("data-sound");
-    const soundPath = `assets/audio/${sound}.mp3`;
-
-    if (!ambientSounds[sound]) {
-      ambientSounds[sound] = new Audio(soundPath);
-      ambientSounds[sound].loop = true;
-    }
-
-    if (ambientSounds[sound].paused) {
-      ambientSounds[sound].play()
-        .then(() => {
-          button.textContent = `Pause ${sound.charAt(0).toUpperCase() + sound.slice(1)}`;
-        })
-        .catch((err) => console.error(`Error playing ${sound} sound:`, err));
+  // Play/Pause Button
+  playButton.addEventListener("click", () => {
+    if (audioElement.paused) {
+      audioElement.play().catch((error) => {
+        console.error(`Error playing ${sampleId}:`, error);
+      });
+      playButton.textContent = "Pause";
     } else {
-      ambientSounds[sound].pause();
-      button.textContent = `Play ${sound.charAt(0).toUpperCase() + sound.slice(1)}`;
+      audioElement.pause();
+      playButton.textContent = "Play";
     }
   });
-});
 
-// Theme Switching Logic
-visualThemeButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const theme = button.getAttribute("data-theme");
-    if (theme === "day") {
-      changeBackground("assets/images/sunny-background.jpg");
-    } else if (theme === "night") {
-      changeBackground("assets/images/night-background.jpg");
-    }
+  // Loop Toggle Button
+  loopButton.addEventListener("click", () => {
+    audioElement.loop = !audioElement.loop;
+    loopButton.textContent = audioElement.loop ? "Loop On" : "Loop Off";
   });
-});
 
-function changeBackground(imagePath) {
-  backgroundDiv.style.backgroundImage = `url(${imagePath})`;
+  // Volume Control
+  volumeControl.addEventListener("input", (e) => {
+    audioElement.volume = e.target.value;
+  });
+
+  // Pitch Control
+  pitchControl.addEventListener("input", (e) => {
+    audioElement.playbackRate = e.target.value;
+  });
+
+  // Speed Control
+  speedControl.addEventListener("input", (e) => {
+    audioElement.playbackRate = e.target.value;
+  });
+
+  // Reset Button Text When Playback Ends
+  audioElement.addEventListener("ended", () => {
+    playButton.textContent = "Play";
+  });
 }
 
-// Generate Melody with Magenta.js
-document.getElementById("generate-melody").addEventListener("click", async () => {
-  const seed = {
-    notes: [{ pitch: 60, startTime: 0.0, endTime: 0.5 }],
-    totalTime: 0.5,
-  };
-  const steps = 32;
-  const temperature = 1.0;
-  const melody = await melodyRNN.continueSequence(seed, steps, temperature);
-  console.log("Generated Melody:", melody);
+// Initialize Controls for Each Sample
+["drums", "bass", "fx", "synth"].forEach((sampleId) => {
+  initializeSampleControls(sampleId);
 });
 
-// Generate Drums with Magenta.js
-document.getElementById("generate-drums").addEventListener("click", async () => {
-  const seed = {
-    notes: [{ pitch: 36, startTime: 0.0, endTime: 0.5 }],
-    totalTime: 0.5,
-  };
-  const steps = 32;
-  const temperature = 1.0;
-  const drums = await drumRNN.continueSequence(seed, steps, temperature);
-  console.log("Generated Drums:", drums);
+// Ambient Sound Controls
+const ambientSounds = {
+  rain: new Audio("assets/audio/rain.mp3"),
+  birds: new Audio("assets/audio/birds.mp3"),
+};
+
+// Enable looping for all ambient sounds
+Object.values(ambientSounds).forEach((sound) => (sound.loop = true));
+
+// Add event listeners for each button
+document.getElementById("rain-button").addEventListener("click", () => {
+  toggleAmbientSound("rain");
+});
+document.getElementById("birds-button").addEventListener("click", () => {
+  toggleAmbientSound("birds");
 });
 
-// Debugging for Errors
-audioPlayer.addEventListener("error", (e) => {
-  console.error("Audio playback error:", e);
+// Function to toggle individual ambient sounds
+function toggleAmbientSound(soundKey) {
+  const sound = ambientSounds[soundKey];
+  const button = document.getElementById(`${soundKey}-button`);
+
+  if (sound.paused) {
+    sound.play().catch((error) => {
+      console.error(`Error playing ${soundKey}:`, error);
+    });
+    button.textContent = `Pause ${capitalize(soundKey)}`;
+  } else {
+    sound.pause();
+    button.textContent = `Play ${capitalize(soundKey)}`;
+  }
+}
+
+// Stop all ambient sounds
+document.getElementById("stop-all-ambient").addEventListener("click", () => {
+  Object.keys(ambientSounds).forEach((key) => {
+    ambientSounds[key].pause();
+    ambientSounds[key].currentTime = 0;
+    document.getElementById(`${key}-button`).textContent = `Play ${capitalize(key)}`;
+  });
 });
 
-backgroundVideo.addEventListener("error", (e) => {
-  console.error("Video playback error:", e);
+// Canvas Image Display
+const canvas = document.getElementById("music-visualizer");
+if (canvas) {
+  const ctx = canvas.getContext("2d");
+  const imagePath = "assets/images/background.png";
+
+  function displayImageOnCanvas(imagePath) {
+    const image = new Image();
+    image.src = imagePath;
+
+    image.onload = () => {
+      const aspectRatio = image.naturalWidth / image.naturalHeight;
+      canvas.width = canvas.parentElement.offsetWidth;
+      canvas.height = canvas.width / aspectRatio;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+    };
+
+    image.onerror = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "red";
+      ctx.font = "20px Arial";
+      ctx.fillText("Image could not be loaded.", canvas.width / 2, canvas.height / 2);
+    };
+  }
+
+  window.addEventListener("resize", () => {
+    displayImageOnCanvas(imagePath);
+  });
+
+  displayImageOnCanvas(imagePath);
+}
+
+// Utility Function
+function capitalize(word) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
+// Theme Switching Logic
+const backgroundVideo = document.getElementById("background-video");
+const visualizerVideo = document.getElementById("visualizer-video");
+const themeButtons = document.querySelectorAll('#visual-theme .button');
+
+themeButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const theme = button.dataset.theme;
+    if (theme === "day") {
+      backgroundVideo.src = "assets/videos/lofi-day.mp4";
+      visualizerVideo.src = "assets/videos/lofi-day.mp4";
+    } else {
+      backgroundVideo.src = "assets/videos/lofi-night.mp4";
+      visualizerVideo.src = "assets/videos/lofi-night.mp4";
+    }
+
+    document.body.className = theme;
+    themeButtons.forEach((btn) => btn.setAttribute("aria-pressed", "false"));
+    button.setAttribute("aria-pressed", "true");
+  });
 });
 

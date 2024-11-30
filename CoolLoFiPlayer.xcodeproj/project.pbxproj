@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		1FD29C7F2CFA6F3200D3F6C9 /* Drums_Loop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Drums_Loop.wav; sourceTree = "<group>"; };
+		1FD29C802CFA6F3200D3F6C9 /* FX_Sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FX_Sound.wav; sourceTree = "<group>"; };
+		1FD29C812CFA6F3200D3F6C9 /* Sub_Bass.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Sub_Bass.wav; sourceTree = "<group>"; };
+		1FD29C822CFA6F3200D3F6C9 /* Synth_Loop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Synth_Loop.wav; sourceTree = "<group>"; };
 		1FEA77762CF84BDA00997323 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		1FEA77772CF84C3200997323 /* style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		1FEA77782CF84C7500997323 /* script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = script.js; sourceTree = "<group>"; };
@@ -14,20 +18,27 @@
 		1FEA77802CF8539100997323 /* package.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = package.json; sourceTree = "<group>"; };
 		1FEA77912CF85CDB00997323 /* track1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = track1.mp3; sourceTree = "<group>"; };
 		1FEA77922CF85DAB00997323 /* lofi-background.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "lofi-background.mp4"; sourceTree = "<group>"; };
-		1FEA77942CF8650200997323 /* Drums_Loop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Drums_Loop.wav; sourceTree = "<group>"; };
 		1FEA77972CF8650200997323 /* track2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = track2.mp3; sourceTree = "<group>"; };
 		1FEA77982CF8650200997323 /* track3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = track3.mp3; sourceTree = "<group>"; };
-		1FEA77992CF8650900997323 /* Sub_Bass.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Sub_Bass.wav; sourceTree = "<group>"; };
 		1FEA779A2CF8652100997323 /* lofi-day.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "lofi-day.mp4"; sourceTree = "<group>"; };
 		1FEA779B2CF8652A00997323 /* lofi-night.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "lofi-night.mp4"; sourceTree = "<group>"; };
 		1FEA779C2CF8665B00997323 /* rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rain.mp3; sourceTree = "<group>"; };
 		1FEA779D2CF8666400997323 /* birds.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = birds.mp3; sourceTree = "<group>"; };
-		1FEA77A02CFA4AAE00997323 /* FX_Sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FX_Sound.wav; sourceTree = "<group>"; };
-		1FEA77A12CFA4AAE00997323 /* Synth_Loop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Synth_Loop.wav; sourceTree = "<group>"; };
 		1FEA77A32CFA4DEF00997323 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		1FD29C832CFA6F3200D3F6C9 /* samples */ = {
+			isa = PBXGroup;
+			children = (
+				1FD29C7F2CFA6F3200D3F6C9 /* Drums_Loop.wav */,
+				1FD29C802CFA6F3200D3F6C9 /* FX_Sound.wav */,
+				1FD29C812CFA6F3200D3F6C9 /* Sub_Bass.wav */,
+				1FD29C822CFA6F3200D3F6C9 /* Synth_Loop.wav */,
+			);
+			path = samples;
+			sourceTree = "<group>";
+		};
 		1FEA776F2CF849B800997323 = {
 			isa = PBXGroup;
 			children = (
@@ -46,6 +57,7 @@
 				1FEA778E2CF85BEA00997323 /* audio */,
 				1FEA77902CF85C5900997323 /* videos */,
 				1FEA779F2CFA4AA200997323 /* images */,
+				1FD29C832CFA6F3200D3F6C9 /* samples */,
 			);
 			path = assets;
 			sourceTree = "<group>";
@@ -66,10 +78,6 @@
 				1FEA77982CF8650200997323 /* track3.mp3 */,
 				1FEA779D2CF8666400997323 /* birds.mp3 */,
 				1FEA779C2CF8665B00997323 /* rain.mp3 */,
-				1FEA77942CF8650200997323 /* Drums_Loop.wav */,
-				1FEA77992CF8650900997323 /* Sub_Bass.wav */,
-				1FEA77A02CFA4AAE00997323 /* FX_Sound.wav */,
-				1FEA77A12CFA4AAE00997323 /* Synth_Loop.wav */,
 			);
 			path = audio;
 			sourceTree = "<group>";
